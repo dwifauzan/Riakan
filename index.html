@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dashboard gempa terkini Indonesia dari BMKG dengan perhitungan jarak dari lokasi pengguna.">
+    <title>Riakan - Dashboard Gempa Terkini</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <p class="eyebrow">Dashboard informasi gempa</p>
+            <h1>Riakan</h1>
+            <p class="subtitle">Lihat gempa terkini di Indonesia dan hitung jaraknya dari lokasimu.</p>
+            <p class="source">Sumber data: <a href="https://www.bmkg.go.id/" target="_blank" rel="noreferrer">BMKG</a></p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="controls" aria-labelledby="controls-title">
+            <div>
+                <h2 id="controls-title">Lokasi pengguna</h2>
+                <p id="location-status">Jarak belum dihitung. Izinkan akses lokasi untuk menampilkan jarak setiap gempa.</p>
+            </div>
+            <button id="btn-lokasi" type="button">Cari Jarak dari Lokasiku</button>
+        </section>
+
+        <div id="status" class="status" role="status" aria-live="polite">Memuat data gempa...</div>
+        <section aria-labelledby="list-title">
+            <div class="section-heading">
+                <h2 id="list-title">Gempa terkini</h2>
+                <span id="result-count" class="result-count"></span>
+            </div>
+            <div id="gempa-list" class="gempa-list"></div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            Data ditampilkan dari endpoint terbuka BMKG. Geolocation membutuhkan HTTPS atau localhost.
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
