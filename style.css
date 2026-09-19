@@ -18,6 +18,23 @@
     --shadow: 0 2px 8px rgb(31 41 51 / 8%);
 }
 
+:root[data-theme="dark"] {
+    --background: #111827;
+    --surface: #1f2937;
+    --text: #f3f4f6;
+    --muted: #b7c0cc;
+    --border: #3d4a5c;
+    --primary: #5b8def;
+    --primary-dark: #82a9f5;
+    --success: #9be3aa;
+    --success-background: #193b27;
+    --warning: #f8d477;
+    --warning-background: #493717;
+    --error: #ffaaa3;
+    --error-background: #4b2224;
+    --shadow: 0 2px 8px rgb(0 0 0 / 25%);
+}
+
 * {
     box-sizing: border-box;
 }
@@ -39,6 +56,13 @@ body {
     padding: 40px 0 32px;
     background: #172b4d;
     color: #fff;
+}
+
+.header-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
 }
 
 .eyebrow {
@@ -70,6 +94,17 @@ h1 {
 .source {
     margin: 0;
     font-size: 0.9rem;
+}
+
+.theme-toggle {
+    flex-shrink: 0;
+    border: 1px solid #8fa7cb;
+    background: transparent;
+    color: #fff;
+}
+
+.theme-toggle:hover:not(:disabled) {
+    background: rgb(255 255 255 / 12%);
 }
 
 a {
@@ -136,19 +171,19 @@ button:disabled {
 }
 
 .status-success {
-    border-color: #a7d7b2;
+    border-color: var(--success);
     background: var(--success-background);
     color: var(--success);
 }
 
 .status-warning {
-    border-color: #f0d58a;
+    border-color: var(--warning);
     background: var(--warning-background);
     color: var(--warning);
 }
 
 .status-error {
-    border-color: #f1b5b0;
+    border-color: var(--error);
     background: var(--error-background);
     color: var(--error);
 }
@@ -206,18 +241,18 @@ button:disabled {
 }
 
 .magnitude-low {
-    background: #d9f2df;
-    color: #176b2c;
+    background: var(--success-background);
+    color: var(--success);
 }
 
 .magnitude-medium {
-    background: #fff0c2;
-    color: #8a4b08;
+    background: var(--warning-background);
+    color: var(--warning);
 }
 
 .magnitude-high {
-    background: #fbd4d0;
-    color: #a32219;
+    background: var(--error-background);
+    color: var(--error);
 }
 
 .distance-badge {
@@ -227,13 +262,13 @@ button:disabled {
 }
 
 .distance-near {
-    background: #d9f2df;
-    color: #176b2c;
+    background: var(--success-background);
+    color: var(--success);
 }
 
 .distance-medium {
-    background: #fff0c2;
-    color: #8a4b08;
+    background: var(--warning-background);
+    color: var(--warning);
 }
 
 .distance-far {
@@ -242,8 +277,13 @@ button:disabled {
 }
 
 .distance-very-far {
-    background: #fbd4d0;
-    color: #a32219;
+    background: var(--error-background);
+    color: var(--error);
+}
+
+:root[data-theme="dark"] .distance-far {
+    background: #5a321e;
+    color: #ffc08c;
 }
 
 .gempa-card h3 {
@@ -310,6 +350,14 @@ button:disabled {
         align-items: stretch;
         flex-direction: column;
         gap: 16px;
+    }
+
+    .header-row {
+        flex-direction: column;
+    }
+
+    .theme-toggle {
+        width: auto;
     }
 
     button {

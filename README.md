@@ -28,6 +28,7 @@ Buka `index.html` melalui localhost (misalnya Live Server). Deployment productio
 
 - Menampilkan hingga 15 gempa M5.0+ dari BMKG.
 - Badge warna berdasarkan magnitude.
+- Toggle light mode dan dark mode dengan penyimpanan preferensi tema di browser.
 - Perhitungan jarak dari lokasi pengguna menggunakan Geolocation API dan Haversine Distance, dengan status:
   - **Dekat**: kurang dari 50 km.
   - **Sedang**: 50–199,9 km.

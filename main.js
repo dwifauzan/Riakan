@@ -12,8 +12,30 @@ const elements = {
     list: document.querySelector("#gempa-list"),
     locationButton: document.querySelector("#btn-lokasi"),
     locationStatus: document.querySelector("#location-status"),
-    resultCount: document.querySelector("#result-count")
+    resultCount: document.querySelector("#result-count"),
+    themeToggle: document.querySelector("#theme-toggle")
 };
+
+function getInitialTheme() {
+    const savedTheme = localStorage.getItem("riakan-theme");
+    if (savedTheme === "light" || savedTheme === "dark") return savedTheme;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+function applyTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    elements.themeToggle.textContent = theme === "dark" ? "Light mode" : "Dark mode";
+    elements.themeToggle.setAttribute(
+        "aria-label",
+        theme === "dark" ? "Aktifkan light mode" : "Aktifkan dark mode"
+    );
+}
+
+function toggleTheme() {
+    const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    localStorage.setItem("riakan-theme", nextTheme);
+    applyTheme(nextTheme);
+}
 
 function setStatus(message, type = "info", withRetry = false) {
     elements.status.className = `status status-${type}`;
@@ -78,6 +100,8 @@ async function fetchJson(url) {
 
 async function fetchEarthquakes() {
     try {
+        // const getJson = await fetchJson(API_URL);
+        // console.log(getJson)
         return await fetchJson(API_URL);
     } catch (directError) {
         console.warn("Fetch langsung BMKG gagal, mencoba proxy CORS.", directError);
@@ -283,5 +307,7 @@ async function loadEarthquakeData() {
     }
 }
 
+applyTheme(getInitialTheme());
+elements.themeToggle.addEventListener("click", toggleTheme);
 elements.locationButton.addEventListener("click", requestUserLocation);
 loadEarthquakeData();
