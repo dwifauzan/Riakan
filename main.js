@@ -106,6 +106,19 @@ function formatDistance(distance) {
     return `${distance.toLocaleString("id-ID", { maximumFractionDigits: 1 })} km`;
 }
 
+function getDistanceCategory(distance) {
+    if (distance < 50) {
+        return { label: "Dekat", className: "distance-near" };
+    }
+    if (distance < 200) {
+        return { label: "Sedang", className: "distance-medium" };
+    }
+    if (distance < 500) {
+        return { label: "Jauh", className: "distance-far" };
+    }
+    return { label: "Jauh banget", className: "distance-very-far" };
+}
+
 function createEarthquakeCard(earthquake) {
     const card = document.createElement("article");
     card.className = "gempa-card";
@@ -120,9 +133,14 @@ function createEarthquakeCard(earthquake) {
     const distance = document.createElement("span");
     distance.className = "distance-badge";
     distance.dataset.distance = "true";
-    distance.textContent = earthquake.jarakDariUser === null
-        ? "Jarak belum dihitung"
-        : formatDistance(earthquake.jarakDariUser);
+    if (earthquake.jarakDariUser === null) {
+        distance.textContent = "Jarak belum dihitung";
+    } else {
+        const category = getDistanceCategory(earthquake.jarakDariUser);
+        distance.classList.add(category.className);
+        distance.textContent = `${formatDistance(earthquake.jarakDariUser)} · ${category.label}`;
+        distance.title = `Kategori jarak: ${category.label}`;
+    }
 
     heading.append(magnitude, distance);
 

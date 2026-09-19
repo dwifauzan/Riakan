@@ -226,6 +226,26 @@ button:disabled {
     text-align: right;
 }
 
+.distance-near {
+    background: #d9f2df;
+    color: #176b2c;
+}
+
+.distance-medium {
+    background: #fff0c2;
+    color: #8a4b08;
+}
+
+.distance-far {
+    background: #fde3c2;
+    color: #9a3412;
+}
+
+.distance-very-far {
+    background: #fbd4d0;
+    color: #a32219;
+}
+
 .gempa-card h3 {
     min-height: 3em;
     margin-bottom: 16px;
